@@ -1,0 +1,95 @@
+<style>
+	html,body,ul,li,div,img,p,span{margin: 0; padding: 0;}
+	ul,li{list-style: none;}
+	#container{
+		padding-left: 15px;
+	}
+	#container ul li{
+		border-bottom: 1px solid #ccc;
+		display: flex;
+		justify-content: space-between;
+		padding: 15px 15px 15px 0;
+		height: 124px;
+		box-sizing: border-box;
+	}
+	.li_left{
+		width: 66px;
+	}
+	.li_left img{
+		width: 100%;
+	}
+	.li_right{
+		flex: 1;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-left: 10px;
+	}
+	.txt{
+		width: 209px;
+		height: 100%;
+		color: #999;
+		font-size: 13px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+	}
+	.txt p{
+		width: 209px;
+		overflow: hidden;
+		text-overflow:ellipsis;
+		white-space:nowrap;
+	}
+	.txt p:first-child{
+		font-size: 16px;
+		color: #333;
+	}
+	.txt p:first-child span{
+		color: #fff;
+		background-color: #D2D6DC;
+		padding: 0 3px;
+		font-size: 12px;
+		border-radius: 3px;
+		margin-left: 5px;
+	}
+	.txt p:nth-child(2) span{
+		color: #FFB232;
+		margin-left: 5px;
+	}
+	.btn span{
+		border: 1px solid #FFB232;
+		color: #FF6700;
+		font-size: 13px;
+		padding: 3px 10px;
+		border-radius: 3px;
+	}
+</style>
+<ul>
+	{{each films val}}
+	<li>
+		<div class="li_left">
+			<img src="{{val.poster}}"/>
+		</div>
+		<div class="li_right">
+			<div class="txt">
+				<p>{{val.name}}<span>2D</span></p>
+				<p>
+					{{if val.grade}}
+					观众评分<span>{{val.grade}}</span>
+					{{/if}}
+				</p>
+				<p>
+					主演: 
+					{{each val.actors actor}}
+					{{actor.name}} 
+					{{/each}}
+				</p>
+				<p><span>{{val.nation}}</span> | <span>{{val.runtime}}</span>分钟</p>
+			</div>
+			<div class="btn">
+				<span>购票</span>
+			</div>
+		</div>
+	</li>
+	{{/each}}
+</ul>
